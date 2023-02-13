@@ -1,0 +1,12 @@
+training_directory: ./data/training
+validation_directory: ./data/validation
+evaluation_directory: ./data/evaluation
+seed: 1
+mean: [0.4635, 0.4889, 0.4080]
+std: [0.1755, 0.1484, 0.1919]
+
+model_name: example
+learning_rate: 0.001
+epochs: 5
+batch_size: 32
+pre_trained: True
