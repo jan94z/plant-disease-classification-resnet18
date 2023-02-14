@@ -22,8 +22,6 @@ class imagedataset():
     def __getitem__(self, idx):
         img_path = f'{self.dir}/{self.annotation.iloc[idx, 0]}'
         image = imread(img_path)
-        # if image.shape[-1] == 4: # if rgba image
-        #     image = rgba2rgb(image)
         label = self.annotation.iloc[idx, 1]
         if self.transform:
             image = self.transform(image)
@@ -49,7 +47,7 @@ def plot_loss(train_loss, valid_loss, epochs, path, title='Validation and Traini
     plt.figure()
     plt.plot(valid_loss, label='Validation')
     plt.plot(train_loss, label='Training')
-    plt.xticks([x for x in range(1, epochs+1)])
+    plt.xticks([x for x in range(epochs)], [x for x in range(1, epochs+1)])
     plt.title(title)
     plt.legend()
     plt.savefig(path)

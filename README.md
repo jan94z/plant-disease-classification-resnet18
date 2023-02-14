@@ -1,17 +1,16 @@
 # plant-disease-classification
 ## Objective
 ...
-[^reference]
 ## Usage
 ...
 ### Data
-Download the data [here]()
+Download the data [here](https://data.mendeley.com/datasets/tywbtsjrjv/1)
 ### Initialize virtual environment and install packages
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
 pip3 install -r requirements.txt
-```
+``` 
 ### Prepare the data
 [prepare_data.py]()
 ```bash

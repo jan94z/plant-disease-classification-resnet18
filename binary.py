@@ -28,6 +28,7 @@ if __name__ == '__main__':
     
     ######## TRAINING AND VALIDATION ########
     def training():
+        
         # load specs
         config = utils.load_config('./config.yaml')
         training_path, validation_path = config['training_directory'], config['validation_directory']
@@ -66,13 +67,13 @@ if __name__ == '__main__':
         trainloader = torch.utils.data.DataLoader(trainset, batch_size=batch_size, shuffle=True)
         validset = utils.imagedataset('./binary.csv', 'validation', validation_path, transform=transform)
         validloader = torch.utils.data.DataLoader(validset, batch_size=batch_size, shuffle=False)
-       
+        
         first_epoch = True # flag to create label and score tensors
         for epoch in range(epochs):
             os.mkdir(f'{model_path}/epoch{epoch+1}') # folder to store model of each epoch
             print(f'Epoch: {epoch+1}/{epochs}')
             # training
-            print(f'Training')
+            print(f'Training...')
             net.train()
             first_batch = True
             running_train_loss = 0.0
@@ -94,7 +95,7 @@ if __name__ == '__main__':
                     prediction = torch.hstack((prediction, scores))
 
             # validation
-            print('Validation')
+            print('Validation...')
             net.eval()
             first_batch = True
             running_valid_loss = 0.0
@@ -153,11 +154,8 @@ if __name__ == '__main__':
             idx, vidx = torch.argmax(f1), torch.argmax(vf1)
             f1max, p, r, vf1max, vp, vr = f1[idx], precision[idx], recall[idx], vf1[vidx], vprecision[vidx], vrecall[vidx]
 
-            print(f'Epoch finished.\nPerformance on training data: Best F1-score: {torch.round(f1max, decimals=2, out=None)} \
-                  Precision at best F1-Score: {torch.round(p, decimals=2, out=None)} Recall at best F1-Score: {torch.round(r, decimals=2, out=None)} \
-                  \nPerformance on validation data: Best F1-score: {torch.round(vf1max, decimals=2, out=None)} \
-                  Precision at best F1-Score: {torch.round(vp, decimals=2, out=None)} Recall at best F1-Score: {torch.round(vr, decimals=2, out=None)}')
-
+            print(f"Epoch finished.\nPerformance on training data: Best F1-score: {f1max} Precision at best F1-Score: {p} Recall at best F1-Score: {r}\nPerformance on validation data: Best F1-score: {vf1max} Precision at best F1-Score: {vp} Recall at best F1-Score: {vr}")
+        
         loss_data = pd.read_csv(f'{model_path}/{model_name}_loss.csv')
         utils.plot_loss(loss_data['train_loss'], loss_data['valid_loss'], config['epochs'], f'{model_path}/{model_name}_loss.jpeg')
         
@@ -222,6 +220,10 @@ if __name__ == '__main__':
          })
         save_df.to_csv(f"{path}/epoch{epoch}/{model}{epoch}_eval.csv")
         utils.plot_prc(eprecision, erecall, f"{model}{epoch} Evaluation", f"{path}/epoch{epoch}/{model}{epoch}_eval.jpeg")
+
+        eidx = torch.argmax(ef1)
+        ef1max, ep, er = ef1[eidx], eprecision[eidx], erecall[eidx]
+        print(f"Evaluation finished.\nPerformance on evaluation data: Best F1-score: {ef1max} Precision at best F1-Score: {ep} Recall at best F1-Score: {er}")
 
     ######## CLASSIFICATION ########
     def classification():
