@@ -3,10 +3,13 @@
 ...
 ## Usage
 ### Data
+[Download the data (with augmentation)](https://data.mendeley.com/datasets/tywbtsjrjv/1) and unzip it. <br>
+The folder "Plant_leave_diseases_dataset_with_augmentation" must be put into the folder [data](data) as it is.
+
 [Article of the original dataset](https://arxiv.org/pdf/1511.08060v2.pdf) <br>
 [Article of the augmented version of the dataset which I used](https://www.sciencedirect.com/science/article/abs/pii/S0045790619300023?via%3Dihub) <br>
-[Download the data (with augmentation)](https://data.mendeley.com/datasets/tywbtsjrjv/1) and unzip it <br>
-The folder "Plant_leave_diseases_dataset_with_augmentation" must be put into the folder [data](data) as it is 
+
+
 ### Initialize virtual environment and install packages
 ```bash
 python3 -m venv .venv
@@ -47,6 +50,7 @@ The executed part of script does the following:
 - trains the network
 - validates the network after each epoch
 - saves the state of the network as well as its performance on the training and validation data after each epoch
+- keeps record of the loss per epoch and saves it
 
 The name of the model and some hyperparameters can be changed in the config file.
 ### Evaluate the model
