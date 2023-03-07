@@ -58,7 +58,7 @@ if __name__ == '__main__':
 
         transform = transforms.Compose( # data is already augmented, no need for further augmentation here
         [transforms.ToTensor(),
-        transforms.Resize((256, 256)), # all images are supposed to be 256x256, implemented for safety reasons
+        transforms.Resize((256, 256)),
         transforms.Normalize(mean=mean, std=std)])
         optimizer = optim.Adam(net.parameters(), lr=learning_rate)
         loss_function = nn.CrossEntropyLoss()
