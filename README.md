@@ -1,6 +1,6 @@
 # plant-disease-classification
 ## Objective
-In this project I used PyTorch, Imagenet's ResNet18 and the PlantVillage dataset to obtain a network that is able to classify healthy and infected plant leaves. The dataset usually is used to built a muliclass model that treats each plant-disease pair as a single class. However, this time I wanted to build a binary classifier that just distinguishes between healthy and infected leaves.
+In this project I used PyTorch, Imagenet's ResNet18 and the PlantVillage dataset to obtain a network that is able to classify healthy and infected plant leaves. The dataset usually is used to built a multiclass model that treats each plant-disease pair as a single class. However, this time I wanted to build a binary classifier that just distinguishes between healthy and infected leaves.
 ## Usage
 ### Data
 [Download the data (with augmentation)](https://data.mendeley.com/datasets/tywbtsjrjv/1) and unzip it. <br>
